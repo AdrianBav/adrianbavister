@@ -1,0 +1,99 @@
+.skills{
+    background: rgb(102, 135, 169); /* Fall-back for browsers that don't support rgba */
+    background: rgba(102, 135, 169, 0.9);
+    }
+
+.skills .heading{
+    color:#fff;
+    border-bottom: 1px solid #E1E1E1;
+    width: 40%;
+    margin: 0 auto;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    text-align: center;
+    padding-bottom: 10px;
+    }
+
+.para{
+    font-size: 15px!important;
+    color:#fff;
+    padding:3em 0em 4em 0em;
+    text-align: center;
+    }
+
+.centertxt {
+    width: 95%;
+    margin: 0 auto;
+    }
+
+.text-light {
+    padding: 3em 0em;
+     }
+
+.chart {
+    position: relative;
+    display: inline-block;
+    margin: 3em;
+    width: 130px;
+    height: 130px;
+    text-align: center;
+    }
+
+.chart canvas {
+    width: 130px;
+    height: 130px;
+    }
+
+.chart-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    }
+
+.percent,
+.count-number,
+.count-number-done {
+    color: #fff;
+    font-weight: 700;
+    font-size: 2.333em;
+    line-height: 1.34;
+    }
+
+.text-light .percent,
+.text-light .count-number,
+.text-light .count-number-done {
+    color: #fff;
+    }
+
+.percent:after {
+    content: '%';
+    }
+
+.chart-title,
+.count-subject {
+    font-weight: 700;
+    font-size: 10px;
+    }
+
+.chart-title {
+    color: #fff;
+    }
+
+.text-light .chart-title,
+.text-light .count-subject {
+    color: #fff;
+    }
+
+.text-light .timeline .experience-info p {
+    color: rgba(255,255,255,0.7);
+    }
+
+.text-light .timeline time {
+    color: rgba(255,255,255,0.5);
+    }
+
+.text-light .timeline .experience,
+.text-light .timeline .experience .circle {
+    border-color: rgba(255,255,255,0.5);
+    }
