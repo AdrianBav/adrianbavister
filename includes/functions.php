@@ -67,7 +67,7 @@
     function send_contact_message(&$guest_input)
     {
         $to = 'Adrian Bavister <adrian.bavister@gmail.com>';
-        $subject = 'Message from {$guest_name}, via personal resume site';
+        $subject = 'Message from guest via personal resume site';
         $message = '';
         $headers = array();
 
