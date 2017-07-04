@@ -79,7 +79,7 @@
         $message = wordwrap($message, 70, "\r\n");
 
         // Define message headers
-        $headers[] = 'From: contact@adrianbavister.com';
+        $headers[] = 'From: Adrian Bavister <webmaster@adrianbavister.com>';
         $headers[] = 'Reply-To: contact@adrianbavister.com';
         $headers[] = 'X-Mailer: PHP/' . phpversion();
 
