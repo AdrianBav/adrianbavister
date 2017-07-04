@@ -1,77 +1,77 @@
 <?php
 
+    require_once 'includes/functions.php';
+
 
     /*!
      * Constants
      */
 
-    define('EMAIL', 'adrian@bavanco.co.uk');
-    define('PHONE', '+1 (972) 854-2153');
-    define('ADDRESS', 'Richardson, Texas 75080');
-    define('LINKEDIN', 'https://www.linkedin.com/in/adrianbav');
-    define('GITHUB', 'https://github.com/adrianbav');
-    define('SITEPOINT', 'https://www.sitepoint.com/premium/users/AdrianBav');
+    define('EMAIL',         'adrian@bavanco.co.uk');
+    define('PHONE',         '+1 (972) 854-2153');
+    define('ADDRESS',       'Richardson, Texas 75080');
+
+    define('LINKEDIN',      'https://www.linkedin.com/in/adrianbav');
+    define('GITHUB',        'https://github.com/adrianbav');
+    define('SITEPOINT',     'https://www.sitepoint.com/premium/users/AdrianBav');
+
     define('MILES_PER_DAY', '6');
 
 
 
     /*!
-     * Contact Form
+     * Handle Submitted Contact Form
      */
-
-    $to = EMAIL;
-    $subject = 'Portfolio Contact Page';
 
     if (isset($_POST['c_name']) && isset($_POST['c_email']) && isset($_POST['c_message']))
     {
-        $name    = $_POST['c_name'];
-        $from    = $_POST['c_email'];
-        $message = $_POST['c_message'];
+        $guest_input = array(
+            'name'    => $_POST['c_name'],
+            'email'   => $_POST['c_email'],
+            'message' => $_POST['c_message'],
+        );
 
-        if (mail($to, $subject, $message, $from))
+        // Define default feedback
+        $validation_feedback = '<i class="fa fa-warning"></i> Check all fields.';
+
+        // Validate Message
+        if (! validate_message($guest_input, $validation_feedback))
         {
             $result = array(
-                'message' => 'Thank you for contacting me!',
-                'sendstatus' => 1
+                'message'    => $validation_feedback,
+                'sendstatus' => 0
             );
 
             echo json_encode($result);
+            exit;
         }
-        else
+
+        // Send message
+        if (! send_contact_message($guest_input))
         {
             $result = array(
-                'message' => 'Sorry, something is wrong',
-                'sendstatus' => 1
+                'message'    => '<i class="fa fa-warning"></i> Sorry, something is wrong.',
+                'sendstatus' => 0
             );
 
             echo json_encode($result);
+            exit;
         }
 
+        // Message sent sucessfully
+        $result = array(
+            'message'    => 'Thank you for contacting me!',
+            'sendstatus' => 1
+        );
+
+        echo json_encode($result);
         exit;
     }
 
 
 
     /*!
-     * Functions
-     */
-
-    function days_since($start_date)
-    {
-        $now = time();
-        $datediff = $now - $start_date;
-        return floor($datediff / (60 * 60 * 24));
-    }
-
-    function working_days($days)
-    {
-        return floor($days * (5 / 7));
-    }
-
-
-
-    /*!
-     * Variables
+     * Define view data.
      */
 
     // Sub Headings
@@ -93,27 +93,6 @@
         array('title' => 'PHP & MySQL', 'color' => '#8892bf', 'percent' => 72, 'animate' => 2500),
         array('title' => 'RWD', 'color' => '#6cc8c2', 'percent' => 81, 'animate' => 3500),
     );
-
-    /*
-    // Statistic 1 (US States visited)
-    $states = array(
-        'New York',
-        'Virginia',
-        'Texas',
-        'Arizona',
-        'California',
-        'Hawaii',
-        'Massachusetts',
-        'Pennsylvania',
-        'Maryland',
-        'North Carolina',
-        'Georgia',
-        'Florida',
-        'Illinois',
-        'Michigan'
-    );
-    $stat1 = count($states);
-    */
 
     // Statistic 1 (Coundown to 0 cups of coffee)
     $stat1 = 9734;
@@ -139,6 +118,6 @@
 
 
     /*!
-     * View
+     * Render view.
      */
     require 'pages/home.html.php';
