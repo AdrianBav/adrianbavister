@@ -17,6 +17,8 @@
 
     define('MILES_PER_DAY', '6');
 
+    define('DISABLE_EMAIL', true);
+
 
 
     /*!
@@ -25,6 +27,11 @@
 
     if (isset($_POST['c_name']) && isset($_POST['c_email']) && isset($_POST['c_message']))
     {
+        if (DISABLE_EMAIL)
+        {
+            return false;
+        }
+
         $guest_input = array(
             'name'    => $_POST['c_name'],
             'email'   => $_POST['c_email'],
